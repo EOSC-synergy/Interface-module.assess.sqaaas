@@ -1,0 +1,64 @@
+config:
+  credentials: []
+  project_repos:
+    github.com/EOSC-synergy/sqaaas-tooling:
+      branch: main
+      repo: https://github.com/EOSC-synergy/sqaaas-tooling
+    github.com/dtgeoeu-wp6-tsunamis/Interface-module:
+      branch: main
+      repo: https://github.com/dtgeoeu-wp6-tsunamis/Interface-module
+environment:
+  JPL_DOCKERFORCEBUILD: enabled
+  JPL_KEEPGOING: enabled
+sqa_criteria:
+  QC.Acc:
+    repos:
+      github.com/dtgeoeu-wp6-tsunamis/Interface-module git:
+        commands:
+        - /usr/bin/env sh .sqa/script.lousy-myrtle-sloth.sh
+        container: qc.acc_snippy-olive-russel
+  QC.Doc:
+    repos:
+      github.com/dtgeoeu-wp6-tsunamis/Interface-module find_doc_files.py:
+        commands:
+        - /usr/bin/env sh .sqa/script.goopy-cobalt-koala.sh
+        container: qc.doc_crappy-smalt-gharial
+      github.com/dtgeoeu-wp6-tsunamis/Interface-module git:
+        commands:
+        - /usr/bin/env sh .sqa/script.snoopy-zucchini-wombat.sh
+        container: qc.doc_slimy-corn-rat
+      github.com/dtgeoeu-wp6-tsunamis/Interface-module markdownlint:
+        commands:
+        - /usr/bin/env sh .sqa/script.nippy-cardinal-cow.sh
+        container: qc.doc_flaky-rose-mist
+  QC.Lic:
+    repos:
+      github.com/dtgeoeu-wp6-tsunamis/Interface-module licensee:
+        commands:
+        - /usr/bin/env sh .sqa/script.shaky-goldenrod-ferret.sh
+        container: qc.lic_clammy-teal-goat
+  QC.Sec:
+    repos:
+      github.com/dtgeoeu-wp6-tsunamis/Interface-module bandit:
+        commands:
+        - /usr/bin/env sh .sqa/script.baggy-wisteria-dalmatian.sh
+        container: qc.sec_frumpy-pumpkin-pinscher
+  QC.Sty:
+    repos:
+      github.com/dtgeoeu-wp6-tsunamis/Interface-module flake8:
+        commands:
+        - /usr/bin/env sh .sqa/script.flabby-cerise-echidna.sh
+        container: qc.sty_scaly-taupe-newt
+  QC.Uni:
+    repos:
+      github.com/dtgeoeu-wp6-tsunamis/Interface-module pytest:
+        commands:
+        - /usr/bin/env sh .sqa/script.scummy-cerise-retriever.sh
+        container: qc.uni_hazy-olive-opossum
+  QC.Ver:
+    repos:
+      github.com/dtgeoeu-wp6-tsunamis/Interface-module get_git_tags.py:
+        commands:
+        - /usr/bin/env sh .sqa/script.scaly-saffron-mayfly.sh
+        container: qc.ver_flaky-cinnamon-otter
+timeout: 5400
